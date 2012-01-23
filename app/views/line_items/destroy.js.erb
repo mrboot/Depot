@@ -1,0 +1,5 @@
+if ($('#cart tr .line_item').length == 0) { $('#cart').fadeOut("slow"); }
+
+$('#cart').html("<%=j render @cart %>");
+
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 1000);

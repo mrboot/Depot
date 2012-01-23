@@ -47,7 +47,8 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart }
+        format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
         format.json { render json: @line_item, status: :created, location: @line_item }
         session[:counter]=0
       else
@@ -76,16 +77,22 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    @cart = current_cart
     @line_item = LineItem.find(params[:id])
     if @line_item.quantity > 1
       @line_item.quantity -= 1
       @line_item.save
     else
-      @line_item.destroy
+      if @cart.line_items.empty?
+        @cart.destroy
+      else
+        @line_item.destroy
+      end
     end
 
     respond_to do |format|
-      format.html { redirect_to @line_item.cart }
+      format.html { redirect_to store_url }
+      format.js { @current_item = @line_item }
       format.json { head :ok }
     end
   end
