@@ -76,19 +76,10 @@ class LineItemsController < ApplicationController
 
   # DELETE /line_items/1
   # DELETE /line_items/1.json
-  def destroy
+  def destroy   # This will delete the whole line_item row (ie even if quantity > 1)
     @cart = current_cart
     @line_item = LineItem.find(params[:id])
-    if @line_item.quantity > 1
-      @line_item.quantity -= 1
-      @line_item.save
-    else
-      if @cart.line_items.empty?
-        @cart.destroy
-      else
-        @line_item.destroy
-      end
-    end
+    @line_item.destroy
 
     respond_to do |format|
       format.html { redirect_to store_url }
@@ -96,4 +87,41 @@ class LineItemsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  # POST /line_items/1
+  # POST /line_items/1.json  
+  def decrease   # This will reduce quantity of a line_item by 1
+    @cart = current_cart
+    @line_item = @cart.decrease_item(params[:id])
+    
+    respond_to do |format|
+      if @line_item.save
+        format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
+    end    
+  end
+
+  # POST /line_items/1
+  # POST /line_items/1.json  
+  def increase   # This will increae the quantity of a line_item by 1
+    @cart = current_cart
+    @line_item = @cart.increase_item(params[:id])
+    
+    respond_to do |format|
+      if @line_item.save
+        format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
+    end 
+  end
+  
 end
