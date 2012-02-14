@@ -9,14 +9,15 @@
 #  updated_at    :datetime
 #  quantity      :integer         default(1)
 #  product_price :decimal(8, 2)
+#  order_id      :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  product_id: 1
-  cart_id: 1
+  product: ruby
+  order: one
 
 two:
-  product_id: 1
-  cart_id: 1
+  product: ruby
+  cart: one
