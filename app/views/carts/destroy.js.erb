@@ -1,4 +1,11 @@
 // $('#cart').fadeOut("slow");
 
-$('#cart tr').not('.total_line').remove();
-$('#cart').hide('blind', 1000);
+if ($('.new_order').length) 		// If we are on the checkout page
+{ 
+	window.location.replace("/");    // Redirect to the root URL
+}
+else															// otherwise just hide the cart
+{
+	$('#cart tr').not('.total_line').remove();
+	$('#cart').hide('blind', 1000);
+}
