@@ -16,8 +16,14 @@
 
 one:
   product: ruby
+  cart: one
+  quantity: 1
+  product_price: 9.99
   order: one
 
 two:
   product: ruby
   cart: one
+  quantity: 1
+  product_price: 9.99
+  order: one

@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: "Check"
 
 two:
-  name: MyString
+  name: "Money Order"
 # == Schema Information
 #
 # Table name: payment_types
