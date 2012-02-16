@@ -21,7 +21,7 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.0'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
