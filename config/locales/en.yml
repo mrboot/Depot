@@ -3,3 +3,25 @@
 
 en:
   hello: "Hello world"
+  
+  layouts:
+    application:
+      title:      "Pragmatic Bookshelf" 
+      home:       "Home"
+      questions:  "Questions"
+      news:       "News"
+      contact:    "Contact"
+      
+  store:
+    index:
+      title_html: "Your Pragmatic Catalog" 
+      add_html:   "Add to Cart"
+
+  number:
+    currency:
+      format:
+        unit: "&pound;" 
+        precision: 2 
+        separator: "." 
+        delimiter: "," 
+        format: "%u%n"
